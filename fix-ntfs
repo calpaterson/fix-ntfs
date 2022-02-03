@@ -25,7 +25,7 @@ def contains_problem_character(filename):
 
 
 @click.command(help="Rename files that cause problems on ntfs")
-@click.option("--dry-run", is_flag=True)
+@click.option("--dry-run", is_flag=True, help="Does nothing but prints what would be done.")
 @click.argument(
     "filepath", type=click.Path(exists=True, file_okay=False, resolve_path=True)
 )
