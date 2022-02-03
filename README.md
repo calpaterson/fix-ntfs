@@ -8,8 +8,10 @@ Usage: fix-ntfs [OPTIONS] FILEPATH
   Rename files that cause problems on ntfs
 
 Options:
-  --dry-run  Does nothing but prints what would be done.
-  --help     Show this message and exit.
+  --dry-run           Does nothing but prints what would be done.
+  --replacement TEXT  Characters not allowed on NTFS are replaced with this
+                      string (default: '_').
+  --help              Show this message and exit.
 ```
 
 Initial usecase was to get a syncthing folder working between Linux and

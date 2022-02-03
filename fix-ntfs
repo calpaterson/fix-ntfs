@@ -25,18 +25,25 @@ def contains_problem_character(filename):
 
 
 @click.command(help="Rename files that cause problems on ntfs")
-@click.option("--dry-run", is_flag=True, help="Does nothing but prints what would be done.")
+@click.option(
+    "--dry-run", is_flag=True, help="Does nothing but prints what would be done."
+)
+@click.option(
+    "--replacement",
+    default="_",
+    help="Characters not allowed on NTFS are replaced with this string (default: '_').",
+)
 @click.argument(
     "filepath", type=click.Path(exists=True, file_okay=False, resolve_path=True)
 )
-def main(filepath, dry_run):
+def main(filepath, replacement, dry_run):
     for (dirpath, _, filenames) in walk(filepath):
         for filename in filenames:
             if contains_problem_character(filename):
                 old_filename = filename
                 new_filename = filename
                 for problem_char in NTFS_PROBLEM_CHARS:
-                    new_filename = new_filename.replace(problem_char, "_")
+                    new_filename = new_filename.replace(problem_char, replacement)
 
                 old_filepath = path.join(dirpath, old_filename)
                 new_filepath = path.join(dirpath, new_filename)
