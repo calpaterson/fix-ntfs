@@ -1,4 +1,4 @@
-# fix-nfts
+# fix-ntfs
 
 Mass change filenames with characters that cause problems on NTFS.
 
